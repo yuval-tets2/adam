@@ -1,5 +1,5 @@
-datasource postgres {
-  provider = "postgresql"
+datasource mongo {
+  provider = "mongodb"
   url      = env("DB_URL")
 }
 
@@ -10,7 +10,7 @@ generator client {
 model User {
   createdAt DateTime @default(now())
   firstName String?
-  id        String   @id @default(cuid())
+  id        String   @id @default(cuid()) @map("_id") @mongo.ObjectId
   lastName  String?
   password  String
   roles     Json
@@ -22,7 +22,7 @@ model Customer {
   createdAt DateTime @default(now())
   events    Event[]
   firstName String?
-  id        String   @id @default(cuid())
+  id        String   @id @default(cuid()) @map("_id") @mongo.ObjectId
   lastName  String?
   updatedAt DateTime @updatedAt
 }
@@ -32,7 +32,7 @@ model Event {
   customer   Customer? @relation(fields: [customerId], references: [id])
   customerId String?
   date       DateTime?
-  id         String    @id @default(cuid())
+  id         String    @id @default(cuid()) @map("_id") @mongo.ObjectId
   name       String?
   updatedAt  DateTime  @updatedAt
 }

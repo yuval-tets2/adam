@@ -52,7 +52,7 @@ export class CustomerServiceBase {
     args: Prisma.EventFindManyArgs
   ): Promise<Event[]> {
     return this.prisma.customer
-      .findUnique({
+      .findUniqueOrThrow({
         where: { id: parentId },
       })
       .events(args);
