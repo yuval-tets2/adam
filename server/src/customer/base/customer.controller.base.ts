@@ -51,29 +51,11 @@ export class CustomerControllerBase {
   })
   async create(@common.Body() data: CustomerCreateInput): Promise<Customer> {
     return await this.service.create({
-      data: {
-        ...data,
-
-        address: data.address
-          ? {
-              connect: data.address,
-            }
-          : undefined,
-      },
+      data: data,
       select: {
         id: true,
         createdAt: true,
         updatedAt: true,
-        firstName: true,
-        lastName: true,
-        email: true,
-        phone: true,
-
-        address: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
   }
@@ -98,16 +80,6 @@ export class CustomerControllerBase {
         id: true,
         createdAt: true,
         updatedAt: true,
-        firstName: true,
-        lastName: true,
-        email: true,
-        phone: true,
-
-        address: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
   }
@@ -133,16 +105,6 @@ export class CustomerControllerBase {
         id: true,
         createdAt: true,
         updatedAt: true,
-        firstName: true,
-        lastName: true,
-        email: true,
-        phone: true,
-
-        address: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
     if (result === null) {
@@ -172,29 +134,11 @@ export class CustomerControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: {
-          ...data,
-
-          address: data.address
-            ? {
-                connect: data.address,
-              }
-            : undefined,
-        },
+        data: data,
         select: {
           id: true,
           createdAt: true,
           updatedAt: true,
-          firstName: true,
-          lastName: true,
-          email: true,
-          phone: true,
-
-          address: {
-            select: {
-              id: true,
-            },
-          },
         },
       });
     } catch (error) {
@@ -228,16 +172,6 @@ export class CustomerControllerBase {
           id: true,
           createdAt: true,
           updatedAt: true,
-          firstName: true,
-          lastName: true,
-          email: true,
-          phone: true,
-
-          address: {
-            select: {
-              id: true,
-            },
-          },
         },
       });
     } catch (error) {
@@ -269,17 +203,12 @@ export class CustomerControllerBase {
         id: true,
         createdAt: true,
         updatedAt: true,
-        quantity: true,
-        discount: true,
-        totalPrice: true,
+        firstName: true,
+        lastName: true,
+        aaa: true,
+        bbb: true,
 
         customer: {
-          select: {
-            id: true,
-          },
-        },
-
-        product: {
           select: {
             id: true,
           },
