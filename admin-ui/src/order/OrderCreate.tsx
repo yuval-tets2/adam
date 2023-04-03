@@ -3,26 +3,29 @@ import {
   Create,
   SimpleForm,
   CreateProps,
-  TextInput,
+  NumberInput,
   ReferenceInput,
   SelectInput,
 } from "react-admin";
 import { CustomerTitle } from "../customer/CustomerTitle";
+import { ProductTitle } from "../product/ProductTitle";
 
 export const OrderCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <TextInput label="First Name" source="firstName" />
-        <TextInput label="Last Name" source="lastName" />
-        <TextInput label="aaa" source="aaa" />
-        <TextInput label="bbb" source="bbb" />
+        <NumberInput step={1} label="Quantity" source="quantity" />
+        <NumberInput label="Discount" source="discount" />
+        <NumberInput step={1} label="Total Price" source="totalPrice" />
         <ReferenceInput
           source="customer.id"
           reference="Customer"
           label="Customer"
         >
           <SelectInput optionText={CustomerTitle} />
+        </ReferenceInput>
+        <ReferenceInput source="product.id" reference="Product" label="Product">
+          <SelectInput optionText={ProductTitle} />
         </ReferenceInput>
       </SimpleForm>
     </Create>

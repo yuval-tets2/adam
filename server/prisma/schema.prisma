@@ -17,3 +17,51 @@ model User {
   password  String
   roles     Json
 }
+
+model Order {
+  id         String    @id @default(cuid())
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  quantity   Int?
+  discount   Float?
+  totalPrice Int?
+  customer   Customer? @relation(fields: [customerId], references: [id])
+  customerId String?
+  product    Product?  @relation(fields: [productId], references: [id])
+  productId  String?
+}
+
+model Customer {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  firstName String?
+  lastName  String?
+  email     String?
+  phone     String?
+  orders    Order[]
+  address   Address? @relation(fields: [addressId], references: [id])
+  addressId String?
+}
+
+model Address {
+  id        String     @id @default(cuid())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  address_1 String?
+  address_2 String?
+  city      String?
+  state     String?
+  zip       Int?
+  customers Customer[]
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  name        String?
+  itemPrice   Float?
+  description String?
+  orders      Order[]
+}

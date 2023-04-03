@@ -14,8 +14,10 @@ import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
+import { IntNullableFilter } from "../../util/IntNullableFilter";
+import { FloatNullableFilter } from "../../util/FloatNullableFilter";
 import { CustomerWhereUniqueInput } from "../../customer/base/CustomerWhereUniqueInput";
+import { ProductWhereUniqueInput } from "../../product/base/ProductWhereUniqueInput";
 
 @InputType()
 class OrderWhereInput {
@@ -32,47 +34,36 @@ class OrderWhereInput {
 
   @ApiProperty({
     required: false,
-    type: StringNullableFilter,
+    type: IntNullableFilter,
   })
-  @Type(() => StringNullableFilter)
+  @Type(() => IntNullableFilter)
   @IsOptional()
-  @Field(() => StringNullableFilter, {
+  @Field(() => IntNullableFilter, {
     nullable: true,
   })
-  firstName?: StringNullableFilter;
+  quantity?: IntNullableFilter;
 
   @ApiProperty({
     required: false,
-    type: StringNullableFilter,
+    type: FloatNullableFilter,
   })
-  @Type(() => StringNullableFilter)
+  @Type(() => FloatNullableFilter)
   @IsOptional()
-  @Field(() => StringNullableFilter, {
+  @Field(() => FloatNullableFilter, {
     nullable: true,
   })
-  lastName?: StringNullableFilter;
+  discount?: FloatNullableFilter;
 
   @ApiProperty({
     required: false,
-    type: StringNullableFilter,
+    type: IntNullableFilter,
   })
-  @Type(() => StringNullableFilter)
+  @Type(() => IntNullableFilter)
   @IsOptional()
-  @Field(() => StringNullableFilter, {
+  @Field(() => IntNullableFilter, {
     nullable: true,
   })
-  aaa?: StringNullableFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringNullableFilter,
-  })
-  @Type(() => StringNullableFilter)
-  @IsOptional()
-  @Field(() => StringNullableFilter, {
-    nullable: true,
-  })
-  bbb?: StringNullableFilter;
+  totalPrice?: IntNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -85,6 +76,18 @@ class OrderWhereInput {
     nullable: true,
   })
   customer?: CustomerWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => ProductWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ProductWhereUniqueInput)
+  @IsOptional()
+  @Field(() => ProductWhereUniqueInput, {
+    nullable: true,
+  })
+  product?: ProductWhereUniqueInput;
 }
 
 export { OrderWhereInput as OrderWhereInput };

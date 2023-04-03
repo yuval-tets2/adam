@@ -56,17 +56,28 @@ export class OrderControllerBase {
               connect: data.customer,
             }
           : undefined,
+
+        product: data.product
+          ? {
+              connect: data.product,
+            }
+          : undefined,
       },
       select: {
         id: true,
         createdAt: true,
         updatedAt: true,
-        firstName: true,
-        lastName: true,
-        aaa: true,
-        bbb: true,
+        quantity: true,
+        discount: true,
+        totalPrice: true,
 
         customer: {
+          select: {
+            id: true,
+          },
+        },
+
+        product: {
           select: {
             id: true,
           },
@@ -95,12 +106,17 @@ export class OrderControllerBase {
         id: true,
         createdAt: true,
         updatedAt: true,
-        firstName: true,
-        lastName: true,
-        aaa: true,
-        bbb: true,
+        quantity: true,
+        discount: true,
+        totalPrice: true,
 
         customer: {
+          select: {
+            id: true,
+          },
+        },
+
+        product: {
           select: {
             id: true,
           },
@@ -130,12 +146,17 @@ export class OrderControllerBase {
         id: true,
         createdAt: true,
         updatedAt: true,
-        firstName: true,
-        lastName: true,
-        aaa: true,
-        bbb: true,
+        quantity: true,
+        discount: true,
+        totalPrice: true,
 
         customer: {
+          select: {
+            id: true,
+          },
+        },
+
+        product: {
           select: {
             id: true,
           },
@@ -177,17 +198,28 @@ export class OrderControllerBase {
                 connect: data.customer,
               }
             : undefined,
+
+          product: data.product
+            ? {
+                connect: data.product,
+              }
+            : undefined,
         },
         select: {
           id: true,
           createdAt: true,
           updatedAt: true,
-          firstName: true,
-          lastName: true,
-          aaa: true,
-          bbb: true,
+          quantity: true,
+          discount: true,
+          totalPrice: true,
 
           customer: {
+            select: {
+              id: true,
+            },
+          },
+
+          product: {
             select: {
               id: true,
             },
@@ -225,12 +257,17 @@ export class OrderControllerBase {
           id: true,
           createdAt: true,
           updatedAt: true,
-          firstName: true,
-          lastName: true,
-          aaa: true,
-          bbb: true,
+          quantity: true,
+          discount: true,
+          totalPrice: true,
 
           customer: {
+            select: {
+              id: true,
+            },
+          },
+
+          product: {
             select: {
               id: true,
             },
