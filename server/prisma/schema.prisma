@@ -1,5 +1,5 @@
-datasource postgres {
-  provider = "postgresql"
+datasource mysql {
+  provider = "mysql"
   url      = env("DB_URL")
 }
 
@@ -8,7 +8,7 @@ generator client {
 }
 
 model User {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   firstName String?
@@ -16,4 +16,23 @@ model User {
   username  String   @unique
   password  String
   roles     Json
+}
+
+model Customer {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  orders    Order[]
+}
+
+model Order {
+  id         String    @id @default(uuid())
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  firstName  String?
+  lastName   String?
+  aaa        String?
+  bbb        String?
+  customer   Customer? @relation(fields: [customerId], references: [id])
+  customerId String?
 }
