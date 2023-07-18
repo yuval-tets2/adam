@@ -9,6 +9,10 @@ import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
 import { UserShow } from "./user/UserShow";
+import { MulyList } from "./muly/MulyList";
+import { MulyCreate } from "./muly/MulyCreate";
+import { MulyEdit } from "./muly/MulyEdit";
+import { MulyShow } from "./muly/MulyShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -41,6 +45,13 @@ const App = (): React.ReactElement => {
           edit={UserEdit}
           create={UserCreate}
           show={UserShow}
+        />
+        <Resource
+          name="Muly"
+          list={MulyList}
+          edit={MulyEdit}
+          create={MulyCreate}
+          show={MulyShow}
         />
       </Admin>
     </div>
